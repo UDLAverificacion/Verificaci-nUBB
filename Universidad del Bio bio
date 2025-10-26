@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Validación de Certificado - UBB (Simulación Mejorada)</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f7f7f7;
+            color: #333;
+        }
+        .container {
+            max-width: 450px; /* Ancho máximo para simular vista móvil */
+            margin: 0 auto;
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+        .header {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #eee;
+        }
+        .logo {
+            width: 100px; /* Tamaño del logo */
+            height: 100px;
+            margin-bottom: 10px;
+            background-color: #004d99; /* Color UBB simulado */
+            border-radius: 5px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-size: 14px;
+            font-weight: bold;
+        }
+        .university-name {
+            font-size: 18px;
+            font-weight: bold;
+            color: #004d99;
+            text-align: center;
+        }
+        h1 {
+            font-size: 24px;
+            font-weight: normal;
+            line-height: 1.2;
+            margin-top: 0;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        .description {
+            font-size: 14px;
+            margin-bottom: 25px;
+            line-height: 1.5;
+            text-align: center;
+        }
+        .form-container input[type="text"] {
+            width: 100%;
+            padding: 12px 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            font-size: 15px;
+        }
+        .form-container input::placeholder {
+            font-weight: bold;
+            color: #777;
+        }
+        .form-container button {
+            width: 100%;
+            padding: 14px;
+            background-color: #f38f20; /* Color naranja/amarillo para acción principal */
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            margin-bottom: 15px;
+        }
+        .form-container button:hover {
+            background-color: #d87d15;
+        }
+
+        /* --- Estilos para la Sección de Resultados --- */
+        #resultado {
+            margin-top: 25px;
+            padding: 20px;
+            background-color: #e6ffe6;
+            border: 1px solid #009900;
+            border-radius: 8px;
+            display: none; /* Inicialmente oculto */
+        }
+        .resultado-titulo {
+            font-size: 18px;
+            color: #006600;
+            margin-bottom: 15px;
+            font-weight: bold;
+            border-bottom: 2px solid #009900;
+            padding-bottom: 5px;
+            text-align: left;
+        }
+        .resultado-item {
+            margin-bottom: 10px;
+            font-size: 14px;
+        }
+        .resultado-item strong {
+            display: inline-block;
+            width: 120px;
+            color: #555;
+        }
+        .resultado-ok {
+            color: green;
+            font-weight: bold;
+        }
+        .volver-btn {
+            background-color: #004d99 !important; /* Color UBB para volver */
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="header">
+            <div class="logo">
+                [IMAGEN/LOGO UBB]
+            </div>
+            <div class="university-name">
+                UNIVERSIDAD DEL BÍO-BÍO
+            </div>
+        </div>
+        
+        <h1 id="mainTitle">
+            Validación de Certificado de Título Profesional o Grado Académico
+        </h1>
+
+        <div class="description" id="mainDescription">
+            En este portal podrá validar la veracidad del certificado de título profesional o grado académico emitidos por la **Universidad del Bío-Bío**.
+        </div>
+
+        <div class="form-container" id="formSection">
+            <form id="validationForm">
+                <input type="text" id="rutInput" placeholder="Rut sin puntos ni guion" value="178494546" required>
+                <input type="text" id="decretoInput" placeholder="N° Decreto" value="1917" required>
+                <input type="text" id="fechaInput" placeholder="Fecha Decreto (DDMMAAAA)" value="13022024" required>
+                
+                <button type="button" onclick="validateCertificate()">Validar Certificado</button>
+            </form>
+        </div>
+
+        <div id="resultado">
+            <div class="resultado-titulo">✅ Certificado Validado Exitosamente</div>
+            
+            <div class="resultado-item">
+                <strong>Estado:</strong> 
+                <span class="resultado-ok">Vigente y Válido</span>
+            </div>
+            
+            <div class="resultado-item">
+                <strong>Nombre:</strong> 
+                <span>David Leopoldo Marambio González</span>
+            </div>
+
+            <div class="resultado-item">
+                <strong>RUT:</strong> 
+                <span>17.849.454-6</span>
+            </div>
+            
+            <div class="resultado-item">
+                <strong>Carrera:</strong> 
+                <span>Ingeniería en Informática</span>
+            </div>
+            
+            <div class="resultado-item">
+                <strong>Grado:</strong> 
+                <span>Licenciado en Ciencias de la Informática</span>
+            </div>
+            
+            <div class="resultado-item">
+                <strong>Fecha Egreso:</strong> 
+                <span>10 de enero de 2024</span>
+            </div>
+            
+            <div class="resultado-item">
+                <strong>N° Decreto:</strong> 
+                <span>1917</span>
+            </div>
+            
+            <div class="resultado-item">
+                <strong>Fecha Decreto:</strong> 
+                <span>13 de febrero de 2024</span>
+            </div>
+            
+            <button type="button" class="volver-btn" onclick="resetForm()">Volver al Inicio</button>
+        </div>
+    </div>
+
+    <script>
+        function validateCertificate() {
+            // Oculta el formulario y muestra los resultados
+            document.getElementById('formSection').style.display = 'none';
+            document.getElementById('resultado').style.display = 'block';
+            
+            // Oculta el título y descripción principal para una vista más limpia
+            document.getElementById('mainTitle').style.display = 'none';
+            document.getElementById('mainDescription').style.display = 'none';
+
+            // Desplazamiento a la sección de resultados
+            document.getElementById('resultado').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function resetForm() {
+            // Muestra el formulario y oculta los resultados
+            document.getElementById('formSection').style.display = 'block';
+            document.getElementById('resultado').style.display = 'none';
+            
+            // Muestra el título y descripción principal
+            document.getElementById('mainTitle').style.display = 'block';
+            document.getElementById('mainDescription').style.display = 'block';
+
+            // Limpia los campos del formulario, si es necesario, o usa la función nativa de HTML
+            document.getElementById('validationForm').reset();
+            
+            // Desplazamiento al inicio de la página
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    </script>
+
+</body>
+</html>
+
